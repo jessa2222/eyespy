@@ -1,4 +1,4 @@
-{% extends 'layout.html'%}
+{% extends 'layout.html' %}
 {% block title %} Dashboard {% endblock %}
 {% block content %}
 <div id="dashboard" class="dashboard section">
@@ -13,10 +13,11 @@
                                 <h6>Navigation</h6>
                             </div>
                             <ul>
-                                <li><a href="/overview">Overview</a></li>
-                                <li><a href="/statistics">Statistics</a></li>
-                                <li><a href="/settings">Settings</a></li>
-                                <li><a href="/profile">Profile</a></li>
+                                <li><a href="#overview">Overview</a></li>
+                                <li><a href="#statistics">Statistics</a></li>
+                                <li><a href="#upload-image">Upload Image</a></li>
+                                <li><a href="#settings">Settings</a></li>
+                                <li><a href="#profile">Profile</a></li>
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
                         </div>
@@ -62,6 +63,26 @@
                             </div>
                         </div>
 
+                        <!-- Upload Image Section -->
+                        <div id="upload-image" class="section-content">
+                            <div class="section-heading">
+                                <h6>Upload Image for Classification</h6>
+                            </div>
+                            <form action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="file">Upload an image of the eye:</label>
+                                    <input type="file" id="file" name="file" accept="image/*" class="form-control" required>
+                                </div>
+                                <button type="submit" class="main-button">Upload and Classify</button>
+                            </form>
+                            {% if classification %}
+                            <div class="classification-result">
+                                <h3>Classification Result:</h3>
+                                <p>{{ classification }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+
                         <!-- Settings Section -->
                         <div id="settings" class="section-content">
                             <div class="section-heading">
@@ -95,3 +116,4 @@
         </div>
     </div>
 </div>
+{% endblock %}

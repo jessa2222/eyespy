@@ -12,20 +12,13 @@
     <title>{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static' , filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="{{ url_for('static' , filename='assets/css/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-seo-dream.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}" />
-    <!--
-
-TemplateMo 563 SEO Dream
-
-https://templatemo.com/tm-563-seo-dream
-
--->
 </head>
 
 <body>
@@ -50,22 +43,20 @@ https://templatemo.com/tm-563-seo-dream
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="/" class="logo">
-                            <h4>Eyespy{%if session ['name']%}, Welcome {{ session['name'] }} {%else%}{%endif%}</h4>
+                            <h4>Eyespy{% if session.get('name') %}, Welcome {{ session.get('name') }}{% endif %}</h4>
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
-                            {% if session['name']%}
-                            <li class="scroll-to-section"><a href="/logout">Logout</a></li>
-                            <li class="scroll-to-section"><img src="{{ url_for('static', filename='assets/images/logo-icon.png') }}" alt="" /></li>
-                            {%else %}
-                            <li class="scroll-to-section"><a href="/login">Login</a></li>
-                            <li class="scroll-to-section"><a href="/register">Register</a></li>
-                            <li class="scroll-to-section">
-                                <img src="{{ url_for('static', filename='assets/images/logo-icon.png') }}" alt="" />
-                            </li>
-                            {%endif%}
+                            <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                            {% if session.get('name') %}
+                            <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                            <li class="nav-item"><img src="{{ url_for('static', filename='assets/images/logo-icon.png') }}" alt="" /></li>
+                            {% else %}
+                            <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                            <li class="nav-item"><a href="/register" class="nav-link">Register</a></li>
+                            <li class="nav-item"><img src="{{ url_for('static', filename='assets/images/logo-icon.png') }}" alt="" /></li>
+                            {% endif %}
                         </ul>
                         <a class="menu-trigger">
                             <span>Menu</span>
@@ -77,8 +68,7 @@ https://templatemo.com/tm-563-seo-dream
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-    {%block content %}{% endblock %}
-
+    {% block content %}{% endblock %}
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
